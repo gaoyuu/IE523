@@ -11,6 +11,7 @@
 
 #include <iostream>
 #include "N_queens_all.h"
+#include <stdlib.h>
 
 int main (int argc, char * const argv[])
 {
@@ -21,6 +22,6 @@ int main (int argc, char * const argv[])
     sscanf (argv[1], "%d", &board_size);
     
     x.nQueens(board_size);
-    
+
     return 0;
 }

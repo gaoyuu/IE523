@@ -76,14 +76,17 @@ class Board
     // private member function: prints the board position
     void print_board()
     {
-        std::cout << size << "-Queens Problem Solution" << std::endl;
+        std::cout << size << "-Queens Problem Solution " << std::endl;
         for (int k = 0; k < size; k++)
             std::cout << "---" ;
         std::cout << std::endl;
         for (int i = 0; i < size; i++)
         {
             for (int j = 0; j < size; j++)
-                cout << " " << chess_board[i][j] << " ";
+                if (chess_board[i][j] == 1)
+                    cout << " Q ";
+                else
+                    cout << " - ";
             cout << endl;
         }
         for (int k = 0; k < size; k++)

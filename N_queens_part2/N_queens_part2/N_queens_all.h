@@ -27,6 +27,9 @@ class Board
     // pointer-to-pointer initialization of the board
     int **chess_board;
     
+    //private data member store the total # of solutions
+    int temp = 0;
+    
     // private member function:  returns 'false' if
     // the (row, col) position is not safe.
     bool is_this_position_safe (int row, int col)
@@ -76,14 +79,17 @@ class Board
     // private member function: prints the board position
     void print_board()
     {
-        std::cout << size << "-Queens Problem Solution" << std::endl;
+        std::cout << size << "-Queens Problem Solution #: " << temp << std::endl;
         for (int k = 0; k < size; k++)
             std::cout << "---" ;
         std::cout << std::endl;
         for (int i = 0; i < size; i++)
         {
             for (int j = 0; j < size; j++)
-                cout << " " << chess_board[i][j] << " ";
+                if (chess_board[i][j] == 1)
+                    cout << " Q ";
+                else
+                    cout << " - ";
             cout << endl;
         }
         for (int k = 0; k < size; k++)
@@ -94,9 +100,12 @@ class Board
     // private member function: recursive backtracking
     bool solve(int col)
     {
-        if (col >= size)
+        if (col == size )
+        {
+            temp++;
+            print_board();
             return true;
-        
+        }
         /* Consider this column and try placing
          this queen in all rows one by one */
         for (int i = 0; i < size; i++)
@@ -108,9 +117,11 @@ class Board
                 /* Place this queen in board[i][col] */
                 chess_board[i][col] = 1;
                 
-                /* recur to place rest of the queens */
-                if (solve(col + 1))
-                    return true;
+                //continuosly recur to get all the solutions
+                solve(col + 1);
+                ///* recur to place rest of the queens */
+                //if (solve(col + 1))
+                //    return true;
                 
                 /* If placing queen in board[i][col]
                  doesn't lead to a solution, then
@@ -118,6 +129,7 @@ class Board
                 chess_board[i][col] = 0; // BACKTRACK
             }
         }
+        
         return false;
     }
     
@@ -128,9 +140,14 @@ public:
         initialize(n);
         
         if (solve(0))
-            print_board();
+            return;
         else
-            std::cout << "There is no solution to the " << n << "-Queens Problem" << std::endl;
+        {
+            if (temp == 0)
+                std::cout << "There is no solution to the " << n << "-Queens Problem" << std::endl;
+            else
+                std::cout << "There are " << temp << " solution to the " << n << "-Queens Problem" << std::endl;
+        }
     }
 };
 #endif
