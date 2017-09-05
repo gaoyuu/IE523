@@ -14,16 +14,13 @@
 
 int main (int argc, char * const argv[])
 {
-    //Board x;
+    Board x;
     
-    Board* x = new Board();
     int board_size;
 
     sscanf (argv[1], "%d", &board_size);
-//    std::cout << "what is the board size" <<  std::endl;
-//    std::cin >> board_size;
-    
-    x->nQueens(board_size);
+
+    x.nQueens(board_size);
     
     return 0;
 }

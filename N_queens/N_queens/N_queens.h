@@ -56,7 +56,7 @@ class Board
     void initialize(int n)
     {
         size = n;
-        int **chess_board = new int*[n];
+        chess_board = new int*[n];
         
         for (int i = 0; i < n; i++)
             chess_board[i] = new int[n];
