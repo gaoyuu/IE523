@@ -1,6 +1,6 @@
 //
-//  N_queens.h
-//  N_queens
+//  N_queens_all.h
+//  N_queens_all
 //
 //  Created by Yu Gao on 9/3/17.
 //  Copyright © 2017 Yu Gao. All rights reserved.
@@ -14,8 +14,8 @@
 //
 //
 
-#ifndef N_queens
-#define N_queens
+#ifndef N_queens_all
+#define N_queens_all
 using namespace std;
 
 class Board
