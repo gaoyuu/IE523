@@ -55,7 +55,7 @@ class Board
     // private member function: initializes the (n x n) chessboard
     void initialize(int n)
     {
-        size = n;
+        //size = n;
         int **chess_board = new int*[n];
         
         for (int i = 0; i < n; i++)
