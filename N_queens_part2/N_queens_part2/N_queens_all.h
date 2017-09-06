@@ -119,6 +119,7 @@ class Board
                 
                 //continuosly recur to get all the solutions
                 solve(col + 1);
+                
                 ///* recur to place rest of the queens */
                 //if (solve(col + 1))
                 //    return true;
