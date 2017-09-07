@@ -26,21 +26,21 @@ class Sudoku
     int k;
     
     // Private member function that checks if the named row is valid
-    bool row_valid(int row)
+    bool row_valid(int row, int num)
     {
         // write code that checks if "row" is valid
         for (int col = 0; col < 9; col++)
-            if (puzzle[row][col] == k)
+            if (puzzle[row][col] == num)
                 return true;
         return false;
     }
     
     // Private member function that checks if the named column is valid
-    bool col_valid(int col)
+    bool col_valid(int col, int num)
     {
         // check validity of "col"
         for (int row = 0; row < 9; row++)
-            if (puzzle[row][col] == k)
+            if (puzzle[row][col] == num)
                 return true;
         return false;
     }
@@ -48,15 +48,15 @@ class Sudoku
     // Private member function that checks if the named 3x3 block is valid
     // modify original call name row&col to uprow&leftcol.
     // for block check, set the start point to up-left conner of a 3 by 3 box
-    bool block_valid(int uprow, int leftcol)
+    bool block_valid(int uprow, int leftcol, int num)
     {
         // check 3 x 3 block validity
         for (int i = 0; i < 3; i++)
             for (int j = 0; j < 3; j++)
-                if (puzzle[i+uprow][j+leftcol] == k)
+                if (puzzle[i+uprow][j+leftcol] == num)
                     return true;
         return false;
-
+        
     }
     
     // function call to check whether the puzzle is done,
@@ -70,12 +70,12 @@ class Sudoku
                     return false;
         return result;
     }
-
-    bool is_safe(int row, int col)
+    
+    bool is_safe(int row, int col, int num)
     {
-        return  !row_valid(row) &&
-                !col_valid(col) &&
-                !block_valid(row - row % 3 , col - col % 3);
+        return  !row_valid(row, num) &&
+                !col_valid(col, num) &&
+                !block_valid(row - row % 3 , col - col % 3, num);
     }
 public:
     
@@ -134,7 +134,7 @@ public:
         for (int k = 1; k <= 9; k++)
         {
             // if looks promising
-            if (is_safe(row, col))
+            if (is_safe(row, col,k))
             {
                 // make tentative assignment
                 puzzle[row][col] = k;
@@ -149,11 +149,11 @@ public:
         }
         return false; // this triggers backtracking
     }
-        // this part of the code identifies the row and col number of the
-        // first incomplete (i.e. 0) entry in the puzzle.  If the puzzle has
-        // no zeros, the variable row will be 9 => the puzzle is done, as 
-        // each entry is row-, col- and block-valid...
-        // use the pseudo code of figure 3 of the description
+    // this part of the code identifies the row and col number of the
+    // first incomplete (i.e. 0) entry in the puzzle.  If the puzzle has
+    // no zeros, the variable row will be 9 => the puzzle is done, as
+    // each entry is row-, col- and block-valid...
+    // use the pseudo code of figure 3 of the description
 };
 
 #endif
