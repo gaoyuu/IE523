@@ -77,6 +77,16 @@ class Sudoku
                 !col_valid(col, num) &&
                 !block_valid(row - row % 3 , col - col % 3, num);
     }
+    
+    bool is_board_done(int puzzle[9][9])
+    {
+        bool result = true;
+        for (int row = 0; row < 9; row++)
+            for (int col = 0; col < 9; col++)
+                if (puzzle[row][col] == 0)
+                    return false;
+        return result;
+    }
 public:
     
     // Public member function that reads the incomplete puzzle
@@ -105,7 +115,10 @@ public:
     // Public member function that prints the puzzle when called
     void print_puzzle()
     {
-        std::cout << std::endl << "Board Position" << std::endl;
+        if (!is_board_done(puzzle))
+            std::cout << std::endl << "initial Board Position" << std::endl;
+        else
+            std::cout << std::endl << "Final Board Position" << std::endl;
         for (int i = 0; i < 9; i++)
         {
             for (int j = 0; j < 9; j++)

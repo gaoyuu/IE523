@@ -1,17 +1,13 @@
 //
 //  main.cpp
-//  Sudoku
+//  test1
 //
-//  Created by Yu Gao on 9/5/17.
+//  Created by Yu Gao on 9/7/17.
 //  Copyright © 2017 Yu Gao. All rights reserved.
 //
-// Soduku Solver using Brute-Force Search implemted using
-// recursion.
-// Written for IE523: Financial Computation by Prof. Sreenivas
-// and GE523: Discrete Event Systems
-//
+
 #include <iostream>
-#include "sudoku.h"
+#include "sudoku_all.h"
 
 using namespace std;
 
