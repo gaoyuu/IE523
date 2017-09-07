@@ -139,9 +139,10 @@ public:
     bool Solve(int row, int col)
     {
         if (is_done(row, col))
-            
+            print_puzzle();
             return true;
-        //print_puzzle();
+        print_puzzle();
+        
         
         for (int k = 1; k <= 9; k++)
         {
@@ -151,16 +152,17 @@ public:
                 // make tentative assignment
                 puzzle[row][col] = k;
                 
-                //Solve(row, col);
+                Solve(row, col);
                 
-                // return, if success, return true
-                if (Solve(row, col))
-                    return true;
+//                // return, if success, return true
+//                if (Solve(row, col))
+//                    return true;
                
                 // failure, unmake & try again
                 puzzle[row][col]= 0;
             }
         }
+        
         return false; // this triggers backtracking
     }
     // this part of the code identifies the row and col number of the
