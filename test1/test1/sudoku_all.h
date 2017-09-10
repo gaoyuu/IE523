@@ -66,14 +66,16 @@ class Sudoku
         return result;
     }
     
+    // function call to check whether a pivot is safe
     bool is_safe(int row, int col, int num)
     {
-        return
-        !row_valid(row, num) &&
-        !col_valid(col, num) &&
-        !block_valid(row - row % 3 , col - col % 3, num);
+        return !row_valid(row, num) &&
+               !col_valid(col, num) &&
+               !block_valid(row - row % 3 , col - col % 3, num);
     }
     
+    // function call to check whether the puzzle is done,
+    // different with the is_done, this accept a bard
     bool is_board_done(int puzzle[9][9])
     {
         bool result = true;
@@ -113,8 +115,7 @@ public:
     {
         if (!is_board_done(puzzle))
             std::cout << std::endl << "initial Board Position" << std::endl;
-        else
-            std::cout << std::endl << "Final Board Position" << std::endl;
+        
         for (int i = 0; i < 9; i++)
         {
             for (int j = 0; j < 9; j++)
@@ -138,29 +139,28 @@ public:
     // search for possible solutions to the incomplete Sudoku puzzle
     bool Solve(int row, int col)
     {
+        //initialize a temp to store the solution number
+        static int temp = 0;
+        
         if (is_done(row, col))
+        {
+            cout << endl;
+            cout << "solution #: " << ++temp << endl;
             print_puzzle();
             return true;
-        print_puzzle();
-        
+        }
         
         for (int k = 1; k <= 9; k++)
         {
-            // if looks promising
             if (is_safe(row, col, k))
             {
                 // make tentative assignment
                 puzzle[row][col] = k;
                 
                 Solve(row, col);
-                
-//                // return, if success, return true
-//                if (Solve(row, col))
-//                    return true;
-               
-                // failure, unmake & try again
-                puzzle[row][col]= 0;
+
             }
+            puzzle[row][col] = 0;
         }
         
         return false; // this triggers backtracking

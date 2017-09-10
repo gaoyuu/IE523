@@ -60,7 +60,7 @@ class Sudoku
     }
     
     // function call to check whether the puzzle is done,
-    // true if is done, false if still has node remain to be filled
+    // true if is done, false if still has slot remained to be filled
     bool is_done(int &row, int &col)
     {
         bool result = true;
@@ -71,6 +71,8 @@ class Sudoku
         return result;
     }
     
+    
+    // function call to check whether a pivot is safe
     bool is_safe(int row, int col, int num)
     {
         return  !row_valid(row, num) &&
@@ -78,6 +80,8 @@ class Sudoku
                 !block_valid(row - row % 3 , col - col % 3, num);
     }
     
+    // function call to check whether the puzzle is done,
+    // different with the is_done, this accept a bard
     bool is_board_done(int puzzle[9][9])
     {
         bool result = true;
@@ -152,7 +156,7 @@ public:
                 // make tentative assignment
                 puzzle[row][col] = k;
                 
-                // return, if success, yay!
+                // return, if success true
                 if (Solve(row, col))
                     return true;
                 

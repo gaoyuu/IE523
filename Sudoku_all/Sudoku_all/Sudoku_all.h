@@ -1,15 +1,10 @@
 //
-//  sudoku.h
-//  Sudoku
+//  Sudoku_all.h
+//  test1
 //
-//  Created by Yu Gao on 9/5/17.
+//  Created by Yu Gao on 9/7/17.
 //  Copyright © 2017 Yu Gao. All rights reserved.
 //
-/*
- *  sudoku.h
- *  Sudoku
- *  Created by Prof. Ramavarapu Sreenivas
- */
 
 #ifndef sudokuc
 #include <vector>
@@ -60,7 +55,7 @@ class Sudoku
     }
     
     // function call to check whether the puzzle is done,
-    // true if is done, false if still has slot remained to be filled
+    // true if is done, false if still has node remain to be filled
     bool is_done(int &row, int &col)
     {
         bool result = true;
@@ -71,11 +66,10 @@ class Sudoku
         return result;
     }
     
-    
     // function call to check whether a pivot is safe
     bool is_safe(int row, int col, int num)
     {
-        return  !row_valid(row, num) &&
+        return !row_valid(row, num) &&
         !col_valid(col, num) &&
         !block_valid(row - row % 3 , col - col % 3, num);
     }
@@ -121,8 +115,7 @@ public:
     {
         if (!is_board_done(puzzle))
             std::cout << std::endl << "initial Board Position" << std::endl;
-        else
-            std::cout << std::endl << "Final Board Position" << std::endl;
+        
         for (int i = 0; i < 9; i++)
         {
             for (int j = 0; j < 9; j++)
@@ -146,24 +139,30 @@ public:
     // search for possible solutions to the incomplete Sudoku puzzle
     bool Solve(int row, int col)
     {
+        //initialize a temp to store the solution number
+        static int temp = 0;
+        
         if (is_done(row, col))
+        {
+            cout << endl;
+            cout << "solution #: " << ++temp << endl;
+            print_puzzle();
             return true;
+        }
+        
         for (int k = 1; k <= 9; k++)
         {
-            // if looks promising
-            if (is_safe(row, col,k))
+            if (is_safe(row, col, k))
             {
                 // make tentative assignment
                 puzzle[row][col] = k;
                 
-                // return, if success true
-                if (Solve(row, col))
-                    return true;
+                Solve(row, col);
                 
-                // failure, unmake & try again
-                puzzle[row][col] = 0;
             }
+            puzzle[row][col] = 0;
         }
+        
         return false; // this triggers backtracking
     }
     // this part of the code identifies the row and col number of the
