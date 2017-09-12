@@ -152,6 +152,7 @@ public:
         
         for (int k = 1; k <= 9; k++)
         {
+            
             if (is_safe(row, col, k))
             {
                 // make tentative assignment
