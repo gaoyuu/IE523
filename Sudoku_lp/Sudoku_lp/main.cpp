@@ -68,6 +68,9 @@ void set_sudoku_ilp()
     }
     
     {
+        //row
+        
+        
         // Using the above code as a guide, put the appropriate lines that
         // articulate the constraint that says each number must appear once
         // in each row in the 9x9 table; create a bunch of rows with 1's at

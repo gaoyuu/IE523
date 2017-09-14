@@ -4,20 +4,22 @@ using namespace std;
 
 
 
-void f()
+int mask[6];
+
+int next(int mask[], int n)
 {
-    char c;
-    cin.get(c);//thislinereadscharacter”c”
-    if('\n' ==c)//’\n’is”return/newline”char
-        return;
-    //cout<<c;
-    f();
-    cout<<c;
+    int i;
+    for (i = 0; (i < n) && mask[i]; ++i)
+        mask[i] = 0;
+    
+    if (i < n)
+    {
+        mask[i] = 1;
+        return 1;
+    }
+    return 0;
 }
 
-int main()
-{
-    
-    f();
-    cout<<endl;
+int main () {
+    next(mask,6);
 }
