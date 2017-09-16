@@ -68,8 +68,26 @@ void set_sudoku_ilp()
     }
     
     {
-        //row
+        //row-constraint
         
+        for (int i = 1; i <= 9; i++)
+        {
+            for (int k = 1; k <= 9; k++)
+            {
+                for (int j = 1; j <= 9; j++)
+                {
+                    double row[730];
+                    for (int k = 0; k < 730; k++)
+                        row[k] = 0;
+                    
+                    //for (int k = 1; k <= 9; k++)
+                    row[(81 * (i-1)) + k + (9 * (j-1))] = 1;
+                    
+                    // adding the constraint
+                    add_constraint(lp, row, EQ, 1);
+                }
+            }
+        }
         
         // Using the above code as a guide, put the appropriate lines that
         // articulate the constraint that says each number must appear once
@@ -79,6 +97,24 @@ void set_sudoku_ilp()
     }
     
     {
+        //column-constraint
+        for (int j = 1; j <= 9; j++)
+        {
+            for (int k = 1; k <= 9; k++)
+            {
+                for (int i = 1; i <= 9; i++)
+                {
+                    double row[730];
+                    for (int k = 0; k < 730; k++)
+                        row[k] = 0;
+                    
+                    row[k + (9 * (j-1)) + (81 * (i-1))] = 1;
+                    
+                    // adding the constraint
+                    add_constraint(lp, row, EQ, 1);
+                }
+            }
+        }
         // Using the above code as a guide, put the appropriate lines that
         // articulate the constraint that says each number must appear once
         // in each column in the 9x9 table; create a bunch of rows with 1's at
@@ -91,11 +127,13 @@ void set_sudoku_ilp()
     {
         for (int k = 1; k <= 9; k++)
         {
-            // Using the above code as a guide, put the appropriate lines that
-            // articulate theconstraint that says each number must appear once
-            // in each 3 x 3 block; create a bunch of rows with 1's at the right
-            // spot (the first entry has to be a zero; this is idiosynchratic of
-            // lpsolve)
+            for(int i = 1; i <=3 ; i++)
+            {
+                for (int j = 1; j <= 9; j++)
+                {
+                    
+                }
+            }
         }
     }
     
@@ -103,11 +141,7 @@ void set_sudoku_ilp()
     {
         for (int k = 1; k <= 9; k++)
         {
-            // Using the above code as a guide, put the appropriate lines that
-            // articulate theconstraint that says each number must appear once
-            // in each 3 x 3 block; create a bunch of rows with 1's at the right
-            // spot (the first entry has to be a zero; this is idiosynchratic of
-            // lpsolve)
+            
         }
     }
     
@@ -115,11 +149,7 @@ void set_sudoku_ilp()
     {
         for (int k = 1; k <= 9; k++)
         {
-            // Using the above code as a guide, put the appropriate lines that
-            // articulate theconstraint that says each number must appear once
-            // in each 3 x 3 block; create a bunch of rows with 1's at the right
-            // spot (the first entry has to be a zero; this is idiosynchratic of
-            // lpsolve)
+            
         }
     }
     
@@ -127,11 +157,7 @@ void set_sudoku_ilp()
     {
         for (int k = 1; k <= 9; k++)
         {
-            // Using the above code as a guide, put the appropriate lines that
-            // articulate theconstraint that says each number must appear once
-            // in each 3 x 3 block; create a bunch of rows with 1's at the right
-            // spot (the first entry has to be a zero; this is idiosynchratic of
-            // lpsolve)
+            
         }
     }
     
@@ -139,11 +165,7 @@ void set_sudoku_ilp()
     {
         for (int k = 1; k <= 9; k++)
         {
-            // Using the above code as a guide, put the appropriate lines that
-            // articulate theconstraint that says each number must appear once
-            // in each 3 x 3 block; create a bunch of rows with 1's at the right
-            // spot (the first entry has to be a zero; this is idiosynchratic of
-            // lpsolve)
+            
         }
     }
     
@@ -151,11 +173,7 @@ void set_sudoku_ilp()
     {
         for (int k = 1; k <= 9; k++)
         {
-            // Using the above code as a guide, put the appropriate lines that
-            // articulate theconstraint that says each number must appear once
-            // in each 3 x 3 block; create a bunch of rows with 1's at the right
-            // spot (the first entry has to be a zero; this is idiosynchratic of
-            // lpsolve)
+            
         }
     }
     
@@ -163,11 +181,7 @@ void set_sudoku_ilp()
     {
         for (int k = 1; k <= 9; k++)
         {
-            // Using the above code as a guide, put the appropriate lines that
-            // articulate theconstraint that says each number must appear once
-            // in each 3 x 3 block; create a bunch of rows with 1's at the right
-            // spot (the first entry has to be a zero; this is idiosynchratic of
-            // lpsolve)
+            
         }
     }
     
@@ -175,11 +189,7 @@ void set_sudoku_ilp()
     {
         for (int k = 1; k <= 9; k++)
         {
-            // Using the above code as a guide, put the appropriate lines that
-            // articulate theconstraint that says each number must appear once
-            // in each 3 x 3 block; create a bunch of rows with 1's at the right
-            // spot (the first entry has to be a zero; this is idiosynchratic of
-            // lpsolve)
+            
         }
     }
     
@@ -187,11 +197,7 @@ void set_sudoku_ilp()
     {
         for (int k = 1; k <= 9; k++)
         {
-            // Using the above code as a guide, put the appropriate lines that
-            // articulate theconstraint that says each number must appear once
-            // in each 3 x 3 block; create a bunch of rows with 1's at the right
-            // spot (the first entry has to be a zero; this is idiosynchratic of
-            // lpsolve)
+            
         }
     }
     
