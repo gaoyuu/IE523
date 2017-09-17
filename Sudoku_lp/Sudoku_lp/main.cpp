@@ -75,13 +75,14 @@ void set_sudoku_ilp()
         {
             for (int k = 1; k <= 9; k++)
             {
-                for (int j = 1; j <= 9; j++)
-                {
+//                for (int j = 1; j <= 9; j++)
+//                {
                     double row[730];
                     for (int k = 0; k < 730; k++)
                         row[k] = 0;
                     
-                    //for (int k = 1; k <= 9; k++)
+                for (int j = 1; j <= 9; j++)
+                {
                     row[(81 * (i-1)) + k + (9 * (j-1))] = 1;
                     
                     // adding the constraint
@@ -103,12 +104,14 @@ void set_sudoku_ilp()
         {
             for (int k = 1; k <= 9; k++)
             {
-                for (int i = 1; i <= 9; i++)
-                {
+//                for (int i = 1; i <= 9; i++)
+//                {
                     double row[730];
                     for (int k = 0; k < 730; k++)
                         row[k] = 0;
-                    
+                
+                for (int i = 1; i <= 9; i++)
+                {
                     row[k + (9 * (j-1)) + (81 * (i-1))] = 1;
                     
                     // adding the constraint
@@ -128,23 +131,17 @@ void set_sudoku_ilp()
     {
         for (int k = 1; k <= 9; k++)
         {
-            for (int j = 1; j <= 9; j++)
-            {
+            
                 double row[730];
                 for (int k = 0; k < 730; k++)
                     row[k] = 0;
                 
-                if ((j % 3) == 0)
-                {
-                    row[k + (9 * 2) + (81 * ((j-1) / 3))] = 1;
-                }
-                else
-                {
-                    row[k + (9 * ((j % 3) -1)) + (81 * ((j-1) / 3))] = 1;
-                }
+            for (int i = 1; i <= 3; i++)
+                for (int j = 1; j <=3; j++)
+                    row[(81 * (i - 1)) + (9 * (j-1)) + k] = 1;
                 // adding the constraint
                 add_constraint(lp, row, EQ, 1);
-            }
+            
         }
     }
     
@@ -383,7 +380,12 @@ void read_input_data(char* argv[])
                     // printing initial value of the puzzle with some formatting
                     cout << value_just_read << " ";
                     
-                    solution[(81 * (i - 1)) + 9 * (j - 1) + value_just_read ] = 1;
+                    double row[730];
+                    for (int k = 0; k < 730; k++)
+                        row[k] = 0;
+                    
+                    row[(81 * (i - 1)) + 9 * (j - 1) + value_just_read ] = 1;
+                    add_constraint(lp, row, EQ, 1);
                     
                     // add appropriate constraints that bind the value of the
                     // appropriate variables based on the incomplete information
@@ -416,7 +418,6 @@ void solve_the_puzzle()
     // (see online guide for the codes at http://lpsolve.sourceforge.net/5.0/ )
     if (ret == 0)
     {
-        
         // get the optimal assignment
         get_variables(lp, solution);
         
@@ -428,7 +429,7 @@ void solve_the_puzzle()
             // inserted into each square of the solution to the Sudoku puzzle
             for (int k = 1; k <= 730; k++)
             {
-                if (solution[k] == 1){
+                if (solution[k - 1] == 1){
                     if (k%9 == 0) {
                         puzzle[k/81][(k/9)%9]=9;
                     }
