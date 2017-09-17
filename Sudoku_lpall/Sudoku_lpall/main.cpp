@@ -33,6 +33,7 @@ using namespace std;
 lprec *lp;
 double solution[729];
 int puzzle[9][9];
+double temp[730];
 
 // This sets the generic ILP for the Sudoku Puzzle
 // It does not use any of the pre-determined board-positions,
@@ -141,8 +142,8 @@ void set_sudoku_ilp()
                     row[k + (9 * ((j % 3) -1)) + (81 * ((j-1) / 3))] = 1;
                 }
             }
-                // adding the constraint
-                add_constraint(lp, row, EQ, 1);
+            // adding the constraint
+            add_constraint(lp, row, EQ, 1);
             
         }
         
@@ -167,8 +168,8 @@ void set_sudoku_ilp()
                     row[27 + k + (9 * ((j % 3) -1)) + (81 * ((j-1) / 3))] = 1;
                 }
             }
-                // adding the constraint
-                add_constraint(lp, row, EQ, 1);
+            // adding the constraint
+            add_constraint(lp, row, EQ, 1);
             
         }
         
@@ -193,8 +194,8 @@ void set_sudoku_ilp()
                     row[54 + k + (9 * ((j % 3) -1)) + (81 * ((j-1) / 3))] = 1;
                 }
             }
-                // adding the constraint
-                add_constraint(lp, row, EQ, 1);
+            // adding the constraint
+            add_constraint(lp, row, EQ, 1);
             
         }
         
@@ -219,8 +220,8 @@ void set_sudoku_ilp()
                     row[243 + k + (9 * ((j % 3) -1)) + (81 * ((j-1) / 3))] = 1;
                 }
             }
-                // adding the constraint
-                add_constraint(lp, row, EQ, 1);
+            // adding the constraint
+            add_constraint(lp, row, EQ, 1);
             
         }
         
@@ -245,8 +246,8 @@ void set_sudoku_ilp()
                     row[270 + k + (9 * ((j % 3) -1)) + (81 * ((j-1) / 3))] = 1;
                 }
             }
-                // adding the constraint
-                add_constraint(lp, row, EQ, 1);
+            // adding the constraint
+            add_constraint(lp, row, EQ, 1);
             
         }
         
@@ -271,8 +272,8 @@ void set_sudoku_ilp()
                     row[297 + k + (9 * ((j % 3) -1)) + (81 * ((j-1) / 3))] = 1;
                 }
             }
-                // adding the constraint
-                add_constraint(lp, row, EQ, 1);
+            // adding the constraint
+            add_constraint(lp, row, EQ, 1);
             
         }
         
@@ -297,8 +298,8 @@ void set_sudoku_ilp()
                     row[486 + k + (9 * ((j % 3) -1)) + (81 * ((j-1) / 3))] = 1;
                 }
             }
-                // adding the constraint
-                add_constraint(lp, row, EQ, 1);
+            // adding the constraint
+            add_constraint(lp, row, EQ, 1);
             
         }
         
@@ -323,8 +324,8 @@ void set_sudoku_ilp()
                     row[513 + k + (9 * ((j % 3) -1)) + (81 * ((j-1) / 3))] = 1;
                 }
             }
-                // adding the constraint
-                add_constraint(lp, row, EQ, 1);
+            // adding the constraint
+            add_constraint(lp, row, EQ, 1);
             
         }
         
@@ -349,8 +350,8 @@ void set_sudoku_ilp()
                     row[540 + k + (9 * ((j % 3) -1)) + (81 * ((j-1) / 3))] = 1;
                 }
             }
-                // adding the constraint
-                add_constraint(lp, row, EQ, 1);
+            // adding the constraint
+            add_constraint(lp, row, EQ, 1);
             
         }
         
@@ -449,41 +450,54 @@ void print_puzzle()
 // Pay attention to how the solution is interpretted...
 void solve_the_puzzle()
 {
-    int ret;
-    // solve the lp
-    ret = solve(lp);
-    
-    // Check if you had a solution
-    // (see online guide for the codes at http://lpsolve.sourceforge.net/5.0/ )
-    if (ret == 0)
+    int count = 1;
+    while(TRUE)
     {
-        // get the optimal assignment
-        get_variables(lp, solution);
+        int ret;
+        // solve the lp
+        ret = solve(lp);
         
-        // print the solution
-        cout << endl << "Final Solution" << endl;
+        // Check if you had a solution
+        // (see online guide for the codes at http://lpsolve.sourceforge.net/5.0/ )
+        if (ret == 0)
         {
-            // Figure out a way to look at the 729-long 0/1 vector solution
-            // to the ILP and print the appropriate integer value to be
-            // inserted into each square of the solution to the Sudoku puzzle
-            for (int i = 0; i < 9; i++)
+            // get the optimal assignment
+            get_variables(lp, solution);
+            
+            // print the solution
+            cout << endl << "Final Solution #: " << count << endl;
             {
-                for (int j = 0; j < 9; j++)
+                temp[0]=0;
+                for (int i = 1; i <= 729; i++)
+                    temp[i] = solution[i - 1];
+                
+                // Figure out a way to look at the 729-long 0/1 vector solution
+                // to the ILP and print the appropriate integer value to be
+                // inserted into each square of the solution to the Sudoku puzzle
+                for (int i = 0; i < 9; i++)
                 {
-                    for (int k = 1; k <= 9; k++)
+                    for (int j = 0; j < 9; j++)
                     {
-                        if (solution[(81 * i) + (9 * j) + k - 1] == 1)
-                            puzzle[i][j] = k;
+                        for (int k = 1; k <= 9; k++)
+                        {
+                            if (temp[(81 * i) + (9 * j) + k] == 1)
+                                puzzle[i][j] = k;
+                        }
                     }
                 }
+                
+                print_puzzle();
+                add_constraint(lp, temp, LE, 80);
+                count++;
             }
         }
-        print_puzzle();
-    }
-    else {
-        cout << "Check the input file... looks like there is no solution" << endl;
+        else {
+            cout << "Check the input file... looks like there is no more solution" << endl;
+            break;
+        }
     }
     delete_lp(lp);
+    
 }
 
 

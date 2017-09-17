@@ -119,29 +119,30 @@ int main (int argc, char* argv[]){
     //    }
     //}
     
-            for (int k = 1; k <= 9; k++)
+    for (int k = 1; k <= 9; k++)
+    {
+        double row[730];
+        for (int k = 0; k < 730; k++)
+            row[k] = 0;
+        
+        for (int j = 1; j <= 9; j++)
+        {
+            if ((j % 3) == 0)
             {
-                for (int j = 1; j <= 9; j++)
-                {
-                    double row[730];
-                    for (int k = 0; k < 730; k++)
-                        row[k] = 0;
-                    if ((j % 3) == 0)
-                    {
-                        row[k + (9 * 2) + (81 * ((j-1) / 3))] = 1;
-                    }
-                    else
-                    {
-                        row[k + (9 * ((j % 3) -1)) + (81 * ((j-1) / 3))] = 1;
-                    }
-    
-                    for (int k = 0; k < 730; k++)
-                        if (row[k] == 1)
-                            cout << "(" << k << ":" <<row[k]<< ")";
-                }
-                cout<<endl;
+                row[k + (9 * 2) + (81 * ((j-1) / 3))] = 1;
+            }
+            else
+            {
+                row[k + (9 * ((j % 3) -1)) + (81 * ((j-1) / 3))] = 1;
             }
         }
+            for (int k = 0; k < 730; k++)
+                if (row[k] == 1)
+                    cout << "(" << k << ":" <<row[k]<< ")";
+        
+        cout<<endl;
+    }
+}
 
 //    {
 //        for (int k = 1; k <= 9; k++)
@@ -149,17 +150,17 @@ int main (int argc, char* argv[]){
 //            double row[730];
 //            for (int i = 0; i < 730; i++)
 //                row[i]=0;
-//            
+//
 //            for (int i = 1 ; i <= 3; i++)
 //                for (int j = 1; j <= 3; j++)
 //                    row[(81 * (i-1)) + (9 *(j - 1)) + k] = 1;
-//            
+//
 //            for (int k = 0; k < 730; k++)
 //                if (row[k] == 1)
 //                    cout << "(" << k << ":" <<row[k]<< ")";
 //            cout<<endl;
 //        }
-//        
+//
 //    }
 //}
 
