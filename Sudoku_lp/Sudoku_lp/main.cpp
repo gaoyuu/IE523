@@ -32,6 +32,7 @@ using namespace std;
 // See my handout for further explanations
 lprec *lp;
 double solution[729];
+int puzzle[9][9];
 
 // This sets the generic ILP for the Sudoku Puzzle
 // It does not use any of the pre-determined board-positions,
@@ -127,12 +128,22 @@ void set_sudoku_ilp()
     {
         for (int k = 1; k <= 9; k++)
         {
-            for(int i = 1; i <=3 ; i++)
+            for (int j = 1; j <= 9; j++)
             {
-                for (int j = 1; j <= 9; j++)
+                double row[730];
+                for (int k = 0; k < 730; k++)
+                    row[k] = 0;
+                
+                if ((j % 3) == 0)
                 {
-                    
+                    row[k + (9 * 2) + (81 * ((j-1) / 3))] = 1;
                 }
+                else
+                {
+                    row[k + (9 * ((j % 3) -1)) + (81 * ((j-1) / 3))] = 1;
+                }
+                // adding the constraint
+                add_constraint(lp, row, EQ, 1);
             }
         }
     }
@@ -141,7 +152,22 @@ void set_sudoku_ilp()
     {
         for (int k = 1; k <= 9; k++)
         {
-            
+            for (int j = 1; j <= 9; j++)
+            {
+                double row[730];
+                for (int k = 0; k < 730; k++)
+                    row[k] = 0;
+                if ((j % 3) == 0)
+                {
+                    row[27 + k + (9 * 2) + (81 * ((j-1) / 3))] = 1;
+                }
+                else
+                {
+                    row[27 + k + (9 * ((j % 3) -1)) + (81 * ((j-1) / 3))] = 1;
+                }
+                // adding the constraint
+                add_constraint(lp, row, EQ, 1);
+            }
         }
     }
     
@@ -149,7 +175,22 @@ void set_sudoku_ilp()
     {
         for (int k = 1; k <= 9; k++)
         {
-            
+            for (int j = 1; j <= 9; j++)
+            {
+                double row[730];
+                for (int k = 0; k < 730; k++)
+                    row[k] = 0;
+                if ((j % 3) == 0)
+                {
+                    row[54 + k + (9 * 2) + (81 * ((j-1) / 3))] = 1;
+                }
+                else
+                {
+                    row[54 + k + (9 * ((j % 3) -1)) + (81 * ((j-1) / 3))] = 1;
+                }
+                // adding the constraint
+                add_constraint(lp, row, EQ, 1);
+            }
         }
     }
     
@@ -157,7 +198,22 @@ void set_sudoku_ilp()
     {
         for (int k = 1; k <= 9; k++)
         {
-            
+            for (int j = 1; j <= 9; j++)
+            {
+                double row[730];
+                for (int k = 0; k < 730; k++)
+                    row[k] = 0;
+                if ((j % 3) == 0)
+                {
+                    row[243 + k + (9 * 2) + (81 * ((j-1) / 3))] = 1;
+                }
+                else
+                {
+                    row[243 + k + (9 * ((j % 3) -1)) + (81 * ((j-1) / 3))] = 1;
+                }
+                // adding the constraint
+                add_constraint(lp, row, EQ, 1);
+            }
         }
     }
     
@@ -165,7 +221,22 @@ void set_sudoku_ilp()
     {
         for (int k = 1; k <= 9; k++)
         {
-            
+            for (int j = 1; j <= 9; j++)
+            {
+                double row[730];
+                for (int k = 0; k < 730; k++)
+                    row[k] = 0;
+                if ((j % 3) == 0)
+                {
+                    row[270 + k + (9 * 2) + (81 * ((j-1) / 3))] = 1;
+                }
+                else
+                {
+                    row[270 + k + (9 * ((j % 3) -1)) + (81 * ((j-1) / 3))] = 1;
+                }
+                // adding the constraint
+                add_constraint(lp, row, EQ, 1);
+            }
         }
     }
     
@@ -173,7 +244,22 @@ void set_sudoku_ilp()
     {
         for (int k = 1; k <= 9; k++)
         {
-            
+            for (int j = 1; j <= 9; j++)
+            {
+                double row[730];
+                for (int k = 0; k < 730; k++)
+                    row[k] = 0;
+                if ((j % 3) == 0)
+                {
+                    row[297 + k + (9 * 2) + (81 * ((j-1) / 3))] = 1;
+                }
+                else
+                {
+                    row[297 + k + (9 * ((j % 3) -1)) + (81 * ((j-1) / 3))] = 1;
+                }
+                // adding the constraint
+                add_constraint(lp, row, EQ, 1);
+            }
         }
     }
     
@@ -181,7 +267,22 @@ void set_sudoku_ilp()
     {
         for (int k = 1; k <= 9; k++)
         {
-            
+            for (int j = 1; j <= 9; j++)
+            {
+                double row[730];
+                for (int k = 0; k < 730; k++)
+                    row[k] = 0;
+                if ((j % 3) == 0)
+                {
+                    row[486 + k + (9 * 2) + (81 * ((j-1) / 3))] = 1;
+                }
+                else
+                {
+                    row[486 + k + (9 * ((j % 3) -1)) + (81 * ((j-1) / 3))] = 1;
+                }
+                // adding the constraint
+                add_constraint(lp, row, EQ, 1);
+            }
         }
     }
     
@@ -189,7 +290,22 @@ void set_sudoku_ilp()
     {
         for (int k = 1; k <= 9; k++)
         {
-            
+            for (int j = 1; j <= 9; j++)
+            {
+                double row[730];
+                for (int k = 0; k < 730; k++)
+                    row[k] = 0;
+                if ((j % 3) == 0)
+                {
+                    row[513 + k + (9 * 2) + (81 * ((j-1) / 3))] = 1;
+                }
+                else
+                {
+                    row[513 + k + (9 * ((j % 3) -1)) + (81 * ((j-1) / 3))] = 1;
+                }
+                // adding the constraint
+                add_constraint(lp, row, EQ, 1);
+            }
         }
     }
     
@@ -197,7 +313,22 @@ void set_sudoku_ilp()
     {
         for (int k = 1; k <= 9; k++)
         {
-            
+            for (int j = 1; j <= 9; j++)
+            {
+                double row[730];
+                for (int k = 0; k < 730; k++)
+                    row[k] = 0;
+                if ((j % 3) == 0)
+                {
+                    row[540 + k + (9 * 2) + (81 * ((j-1) / 3))] = 1;
+                }
+                else
+                {
+                    row[540 + k + (9 * ((j % 3) -1)) + (81 * ((j-1) / 3))] = 1;
+                }
+                // adding the constraint
+                add_constraint(lp, row, EQ, 1);
+            }
         }
     }
     
@@ -252,6 +383,8 @@ void read_input_data(char* argv[])
                     // printing initial value of the puzzle with some formatting
                     cout << value_just_read << " ";
                     
+                    solution[(81 * (i - 1)) + 9 * (j - 1) + value_just_read ] = 1;
+                    
                     // add appropriate constraints that bind the value of the
                     // appropriate variables based on the incomplete information
                     // that was read from the input file
@@ -293,14 +426,40 @@ void solve_the_puzzle()
             // Figure out a way to look at the 729-long 0/1 vector solution
             // to the ILP and print the appropriate integer value to be
             // inserted into each square of the solution to the Sudoku puzzle
+            for (int k = 1; k <= 730; k++)
+            {
+                if (solution[k] == 1){
+                    if (k%9 == 0) {
+                        puzzle[k/81][(k/9)%9]=9;
+                    }
+                    else
+                    {
+                        puzzle[k/81][(k%9)/9]=(k%9)/9
+                        ;
+                    }
+                }
+                    
+                
+            }
+            
         }
     }
     else {
         cout << "Check the input file... looks like there is no solution" << endl;
     }
-    
-    
     delete_lp(lp);
+}
+
+void print_puzzle()
+{
+    for (int i = 0; i < 9; i++)
+    {
+        for (int j = 0; j < 9; j++)
+        {
+            std::cout << puzzle[i][j] << " ";
+        }
+        std::cout << std::endl;
+    }
 }
 
 int main (int argc, char* argv[])
@@ -313,6 +472,8 @@ int main (int argc, char* argv[])
     
     // solve the puzzle and print the solution
     solve_the_puzzle();
+    
+    print_puzzle();
     
     return(0);
 }
