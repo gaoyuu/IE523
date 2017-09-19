@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		734BCFDA1F66FBCE004D0AA4 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 734BCFD91F66FBCE004D0AA4 /* main.cpp */; };
+		73ECC1F61F6F614800565134 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73ECC1F51F6F614800565134 /* main.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		734BCFD41F66FBCE004D0AA4 /* CopyFiles */ = {
+		73ECC1F01F6F614800565134 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = /usr/share/man/man1/;
@@ -23,12 +23,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		734BCFD61F66FBCE004D0AA4 /* test2 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = test2; sourceTree = BUILT_PRODUCTS_DIR; };
-		734BCFD91F66FBCE004D0AA4 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		73ECC1F21F6F614800565134 /* cardgame */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = cardgame; sourceTree = BUILT_PRODUCTS_DIR; };
+		73ECC1F51F6F614800565134 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		73ECC1FC1F6F617500565134 /* card_game.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = card_game.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		734BCFD31F66FBCE004D0AA4 /* Frameworks */ = {
+		73ECC1EF1F6F614800565134 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -38,95 +39,96 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		734BCFCD1F66FBCE004D0AA4 = {
+		73ECC1E91F6F614800565134 = {
 			isa = PBXGroup;
 			children = (
-				734BCFD81F66FBCE004D0AA4 /* test2 */,
-				734BCFD71F66FBCE004D0AA4 /* Products */,
+				73ECC1F41F6F614800565134 /* cardgame */,
+				73ECC1F31F6F614800565134 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		734BCFD71F66FBCE004D0AA4 /* Products */ = {
+		73ECC1F31F6F614800565134 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				734BCFD61F66FBCE004D0AA4 /* test2 */,
+				73ECC1F21F6F614800565134 /* cardgame */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		734BCFD81F66FBCE004D0AA4 /* test2 */ = {
+		73ECC1F41F6F614800565134 /* cardgame */ = {
 			isa = PBXGroup;
 			children = (
-				734BCFD91F66FBCE004D0AA4 /* main.cpp */,
+				73ECC1F51F6F614800565134 /* main.cpp */,
+				73ECC1FC1F6F617500565134 /* card_game.h */,
 			);
-			path = test2;
+			path = cardgame;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		734BCFD51F66FBCE004D0AA4 /* test2 */ = {
+		73ECC1F11F6F614800565134 /* cardgame */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 734BCFDD1F66FBCE004D0AA4 /* Build configuration list for PBXNativeTarget "test2" */;
+			buildConfigurationList = 73ECC1F91F6F614800565134 /* Build configuration list for PBXNativeTarget "cardgame" */;
 			buildPhases = (
-				734BCFD21F66FBCE004D0AA4 /* Sources */,
-				734BCFD31F66FBCE004D0AA4 /* Frameworks */,
-				734BCFD41F66FBCE004D0AA4 /* CopyFiles */,
+				73ECC1EE1F6F614800565134 /* Sources */,
+				73ECC1EF1F6F614800565134 /* Frameworks */,
+				73ECC1F01F6F614800565134 /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = test2;
-			productName = test2;
-			productReference = 734BCFD61F66FBCE004D0AA4 /* test2 */;
+			name = cardgame;
+			productName = cardgame;
+			productReference = 73ECC1F21F6F614800565134 /* cardgame */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		734BCFCE1F66FBCE004D0AA4 /* Project object */ = {
+		73ECC1EA1F6F614800565134 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = "Yu Gao";
 				TargetAttributes = {
-					734BCFD51F66FBCE004D0AA4 = {
+					73ECC1F11F6F614800565134 = {
 						CreatedOnToolsVersion = 8.3.3;
 						ProvisioningStyle = Automatic;
 					};
 				};
 			};
-			buildConfigurationList = 734BCFD11F66FBCE004D0AA4 /* Build configuration list for PBXProject "test2" */;
+			buildConfigurationList = 73ECC1ED1F6F614800565134 /* Build configuration list for PBXProject "cardgame" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = 734BCFCD1F66FBCE004D0AA4;
-			productRefGroup = 734BCFD71F66FBCE004D0AA4 /* Products */;
+			mainGroup = 73ECC1E91F6F614800565134;
+			productRefGroup = 73ECC1F31F6F614800565134 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				734BCFD51F66FBCE004D0AA4 /* test2 */,
+				73ECC1F11F6F614800565134 /* cardgame */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		734BCFD21F66FBCE004D0AA4 /* Sources */ = {
+		73ECC1EE1F6F614800565134 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				734BCFDA1F66FBCE004D0AA4 /* main.cpp in Sources */,
+				73ECC1F61F6F614800565134 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		734BCFDB1F66FBCE004D0AA4 /* Debug */ = {
+		73ECC1F71F6F614800565134 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -174,7 +176,7 @@
 			};
 			name = Debug;
 		};
-		734BCFDC1F66FBCE004D0AA4 /* Release */ = {
+		73ECC1F81F6F614800565134 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -215,48 +217,41 @@
 			};
 			name = Release;
 		};
-		734BCFDE1F66FBCE004D0AA4 /* Debug */ = {
+		73ECC1FA1F6F614800565134 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				LIBRARY_SEARCH_PATHS = /Users/gaoyu/Documents/Courses/lp_solve_5.5/lpsolve55/bin/osx64;
-				OTHER_LDFLAGS = "-llpsolve55";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				USER_HEADER_SEARCH_PATHS = /Users/gaoyu/Documents/Courses/lp_solve_5.5;
 			};
 			name = Debug;
 		};
-		734BCFDF1F66FBCE004D0AA4 /* Release */ = {
+		73ECC1FB1F6F614800565134 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				LIBRARY_SEARCH_PATHS = /Users/gaoyu/Documents/Courses/lp_solve_5.5/lpsolve55/bin/osx64;
-				OTHER_LDFLAGS = "-llpsolve55";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				USER_HEADER_SEARCH_PATHS = /Users/gaoyu/Documents/Courses/lp_solve_5.5;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		734BCFD11F66FBCE004D0AA4 /* Build configuration list for PBXProject "test2" */ = {
+		73ECC1ED1F6F614800565134 /* Build configuration list for PBXProject "cardgame" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				734BCFDB1F66FBCE004D0AA4 /* Debug */,
-				734BCFDC1F66FBCE004D0AA4 /* Release */,
+				73ECC1F71F6F614800565134 /* Debug */,
+				73ECC1F81F6F614800565134 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		734BCFDD1F66FBCE004D0AA4 /* Build configuration list for PBXNativeTarget "test2" */ = {
+		73ECC1F91F6F614800565134 /* Build configuration list for PBXNativeTarget "cardgame" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				734BCFDE1F66FBCE004D0AA4 /* Debug */,
-				734BCFDF1F66FBCE004D0AA4 /* Release */,
+				73ECC1FA1F6F614800565134 /* Debug */,
+				73ECC1FB1F6F614800565134 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 734BCFCE1F66FBCE004D0AA4 /* Project object */;
+	rootObject = 73ECC1EA1F6F614800565134 /* Project object */;
 }
