@@ -429,8 +429,6 @@ void read_input_data(char* argv[])
         }
     }
     else {
-        cout << "Input file missing" << endl;
-        exit(0);
     }
 }
 
@@ -451,6 +449,7 @@ void print_puzzle()
 void solve_the_puzzle()
 {
     int count = 1;
+    //int num = 0;
     while(TRUE)
     {
         int ret;
@@ -487,7 +486,15 @@ void solve_the_puzzle()
                 }
                 
                 print_puzzle();
+                
                 add_constraint(lp, temp, LE, 80);
+                
+//                for (int i = 1; i <= 729; i++)
+//                    if (temp[i] == 1)
+//                        num++;
+//                cout << num;
+                
+                
                 count++;
             }
         }
