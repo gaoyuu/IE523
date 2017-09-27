@@ -35,12 +35,13 @@ class stable_marriage_instance
     // private member function: checks if anybody is free in boolean "my_array"
     // returns the index of the first-person who is free in "my_array"
     // if no one is free it returns a -1.
-    //[true,true,true,true]
+    //[true,true,true,true] return 0
+    //[false,false,false,false] return -1
     int anybody_free(vector <bool> my_array)
     {
         int i = 0;
         while(i < my_array.size()) {
-            if (my_array[i] == true) {
+            if (my_array[i] == false) {
                 //cout << i;
                 return i;
             } else {
@@ -56,7 +57,21 @@ class stable_marriage_instance
     // it returns "false"
     bool rank_check (vector <int> my_array, int index1, int index2)
     {
-        // fill the necessary code for this function
+        bool result = true;
+        for (int i = 0; i < my_array.size(); i++)
+        {
+            if (my_array[i] == index1)
+            {
+                result = true;
+                break;
+            }
+            if (my_array[i] == index2)
+            {
+                result = false;
+                break;
+            }
+        }
+        return result;
     }
     
     // private member function: implements the Gale-Shapley algorithm
@@ -65,21 +80,77 @@ class stable_marriage_instance
         vector <bool> is_man_free;
         vector <bool> is_woman_free;
         vector <vector <bool> > has_this_man_proposed_to_this_woman;
-
-        int man_index, woman_index;
-
+        
+        int man_index;
+        int woman_index = 0;
+        
         // initializing everything
-        for (int i= 0; i < no_of_couples; i++)
+        for (int i = 0; i < no_of_couples; i++)
         {
-            // do the necessary initialization here
+            // Assign each person to be un-engaged, initially
+            vector <bool> temp;
+            is_man_free.push_back(false);
+            is_woman_free.push_back(false);
+            match_for_men.push_back(-1);
+            match_for_women.push_back(-1);
+            has_this_man_proposed_to_this_woman.push_back(temp);
+        }
+        
+        for (int i = 0; i < no_of_couples; i++)
+        {
+            for (int j = 0; j < no_of_couples; j++)
+                has_this_man_proposed_to_this_woman[i].push_back(false);
         }
 
         // Gale-Shapley Algorithm
         while ( (man_index = anybody_free(is_man_free)) >= 0)
         {
-            // fill the necessary code here
+            //cout << "man_index     " << man_index << endl ;
+            //cout <<  "is_man_free    " << anybody_free(is_man_free) << endl;
+            
+           for (int i = 0; i < no_of_couples; i++)
+            {
+                woman_index = Preference_of_men[man_index][i];
+                if (has_this_man_proposed_to_this_woman[man_index][woman_index] == 0)
+                    break;
+            }
+                //cout << "woman_index     " << woman_index << endl ;
+                // Let w be the first woman on M’s preference-list to whom M has not yet
+                // proposed.
+                if (match_for_women[woman_index] == -1)
+                {
+                    match_for_women[woman_index] = man_index;
+                    match_for_men[man_index] = woman_index;
+                    is_man_free[man_index] = true;
+                    is_woman_free[man_index] = true;
+                    has_this_man_proposed_to_this_woman[man_index][woman_index] = 1;
+                    //cout << "is_man_free    " << is_man_free[man_index] << endl;
+                    //cout << "match_for_women     " << match_for_women[woman_index] << endl;
+
+                }
+                else
+                {
+                    int substitute_man = match_for_women[woman_index];
+                    // If woman prefers man_index over her current engagement substitute,
+                    // then break the engagement between w and substitute and
+                    // engage man_index with woman.
+                    cout << "substitute_man     " << substitute_man << endl;
+                    
+                    if (rank_check(Preference_of_women[woman_index], man_index, substitute_man) == true)
+                    {
+                        match_for_women[woman_index] = man_index;
+                        match_for_men[man_index] = woman_index;
+                        is_man_free[substitute_man] = false;
+                        is_man_free[man_index] = true;
+                        has_this_man_proposed_to_this_woman[man_index][woman_index] = 1;
+                    } else {
+                        has_this_man_proposed_to_this_woman[man_index][woman_index] = 1;
+                    }
+                }
+            }
+            //break;
         }
-    }
+    
     
     // private member function: reads data
     void read_data(int argc, const char * argv[])
@@ -167,7 +238,7 @@ public:
     {
         read_data(argc, argv);
         
-//        Gale_Shapley();
+        Gale_Shapley();
         
         print_soln();
     }

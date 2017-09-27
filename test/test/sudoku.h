@@ -1,176 +1,120 @@
-//
-//  sudoku.h
-//  Sudoku
-//
-//  Created by Yu Gao on 9/5/17.
-//  Copyright © 2017 Yu Gao. All rights reserved.
-//
-/*
- *  sudoku.h
- *  Sudoku
- *  Created by Prof. Ramavarapu Sreenivas
- */
-
-#ifndef sudokuc
-#include <vector>
-#include <fstream>
-using std::vector;
+// C++ program for stable marriage problem
+#include <iostream>
+#include <string.h>
+#include <stdio.h>
 using namespace std;
 
-class Sudoku
-{
-    // Private
-    int puzzle[9][9];
-    
-    //initialize a private int k. The number is used to be filled in the puzzle
-    int k;
-    
-    // Private member function that checks if the named row is valid
-    bool row_valid(int row, int num)
-    {
-        // write code that checks if "row" is valid
-        for (int col = 0; col < 9; col++)
-            if (puzzle[row][col] == num)
-                return true;
-        return false;
-    }
-    
-    // Private member function that checks if the named column is valid
-    bool col_valid(int col, int num)
-    {
-        // check validity of "col"
-        for (int row = 0; row < 9; row++)
-            if (puzzle[row][col] == num)
-                return true;
-        return false;
-    }
-    
-    // Private member function that checks if the named 3x3 block is valid
-    // modify original call name row&col to uprow&leftcol.
-    // for block check, set the start point to up-left conner of a 3 by 3 box
-    bool block_valid(int uprow, int leftcol, int num)
-    {
-        // check 3 x 3 block validity
-        for (int i = 0; i < 3; i++)
-            for (int j = 0; j < 3; j++)
-                if (puzzle[i+uprow][j+leftcol] == num)
-                    return true;
-        return false;
-        
-    }
-    
-    // function call to check whether the puzzle is done,
-    // true if is done, false if still has slot remained to be filled
-    bool is_done(int &row, int &col)
-    {
-        bool result = true;
-        for (row = 0; row < 9; row++)
-            for (col = 0; col < 9; col++)
-                if (puzzle[row][col] == 0)
-                    return false;
-        return result;
-    }
-    
-    
-    // function call to check whether a pivot is safe
-    bool is_safe(int row, int col, int num)
-    {
-        return  !row_valid(row, num) &&
-                !col_valid(col, num) &&
-                !block_valid(row - row % 3 , col - col % 3, num);
-    }
-    
-    // function call to check whether the puzzle is done,
-    // different with the is_done, this accept a bard
-    bool is_board_done(int puzzle[9][9])
-    {
-        bool result = true;
-        for (int row = 0; row < 9; row++)
-            for (int col = 0; col < 9; col++)
-                if (puzzle[row][col] == 0)
-                    return false;
-        return result;
-    }
-public:
-    
-    // Public member function that reads the incomplete puzzle
-    // we are not doing any checks on the input puzzle -- that is,
-    // we are assuming they are indeed valid
-    void read_puzzle(int argc, char * const argv[])
-    {
-        ifstream input(argv[1]) ;
-        if ( !input.is_open())
-        {
-            cout << "File not existed in current rep" << endl;
-            exit(1);
-        }
-        
-        for (int i = 0; i < 9; i++)
-        {
-            for (int j = 0; j < 9; j++)
-            {
-                input >> puzzle[i][j];
-            }
-        }
-        // write code that reads the input puzzle using the
-        // guidelines of figure 23 of the bootcamp material
-    }
-    
-    // Public member function that prints the puzzle when called
-    void print_puzzle()
-    {
-        if (!is_board_done(puzzle))
-            std::cout << std::endl << "initial Board Position" << std::endl;
-        else
-            std::cout << std::endl << "Final Board Position" << std::endl;
-        for (int i = 0; i < 9; i++)
-        {
-            for (int j = 0; j < 9; j++)
-            {
-                // check if we have a legitimate integer between 1 and 9
-                if ((puzzle[i][j] >= 1) && (puzzle[i][j] <= 9))
-                {
-                    // printing initial value of the puzzle with some formatting
-                    std::cout << puzzle[i][j] << " ";
-                }
-                else {
-                    // printing initial value of the puzzle with some formatting
-                    std::cout << "X ";
-                }
-            }
-            std::cout << std::endl;
-        }
-    }
-    
-    // Public member function that (recursively) implements the brute-force
-    // search for possible solutions to the incomplete Sudoku puzzle
-    bool Solve(int row, int col)
-    {
-        if (is_done(row, col))
-            return true;
-        for (int k = 1; k <= 9; k++)
-        {
-            // if looks promising
-            if (is_safe(row, col,k))
-            {
-                // make tentative assignment
-                puzzle[row][col] = k;
-                
-                // return, if success true
-                if (Solve(row, col))
-                    return true;
-                
-                // failure, unmake & try again
-                puzzle[row][col] = 0;
-            }
-        }
-        return false; // this triggers backtracking
-    }
-    // this part of the code identifies the row and col number of the
-    // first incomplete (i.e. 0) entry in the puzzle.  If the puzzle has
-    // no zeros, the variable row will be 9 => the puzzle is done, as
-    // each entry is row-, col- and block-valid...
-    // use the pseudo code of figure 3 of the description
-};
+// Number of Men or Women
+#define N  4
 
-#endif
+// This function returns true if woman 'w' prefers man 'm1' over man 'm'
+bool wPrefersM1OverM(int prefer[2*N][N], int w, int m, int m1)
+{
+    bool result = true;
+    // Check if w prefers m over her current engagment m1
+    for (int i = 0; i < N; i++)
+    {
+        // If m1 comes before m in lisr of w, then w prefers her
+        // cirrent engagement, don't do anything
+        if (prefer[w][i] == m1)
+        {
+            result = true;
+            break;
+        }
+        // If m cmes before m1 in w's list, then free her current
+        // engagement and engage her with m
+        if (prefer[w][i] == m)
+        {
+            result = false;
+            break;
+        }
+    }
+    return result;
+}
+
+// Prints stable matching for N boys and N girls. Boys are numbered as 0 to
+// N-1. Girls are numbereed as N to 2N-1.
+void stableMarriage(int prefer[2*N][N])
+{
+    // Stores partner of women. This is our output array that
+    // stores paing information.  The value of wPartner[i]
+    // indicates the partner assigned to woman N+i.  Note that
+    // the woman numbers between N and 2*N-1. The value -1
+    // indicates that (N+i)'th woman is free
+    int wPartner[N];
+    
+    // An array to store availability of men.  If mFree[i] is
+    // false, then man 'i' is free, otherwise engaged.
+    bool mFree[N];
+    
+    // Initialize all men and women as free
+    memset(wPartner, -1, sizeof(wPartner));
+    memset(mFree, false, sizeof(mFree));
+    int freeCount = N;
+    
+    // While there are free men
+    while (freeCount > 0)
+    {
+        // Pick the first free man (we could pick any)
+        int m;
+        for (m = 0; m < N; m++)
+            if (mFree[m] == false)
+                break;
+        
+        // One by one go to all women according to m's preferences.
+        // Here m is the picked free man
+        for (int i = 0; i < N && mFree[m] == false; i++)
+        {
+            int w = prefer[m][i];
+            
+            // The woman of preference is free, w and m become
+            // partners (Note that the partnership maybe changed
+            // later). So we can say they are engaged not married
+            if (wPartner[w-N] == -1)
+            {
+                wPartner[w-N] = m;
+                mFree[m] = true;
+                freeCount--;
+            }
+            
+            else  // If w is not free
+            {
+                // Find current engagement of w
+                int m1 = wPartner[w-N];
+                
+                // If w prefers m over her current engagement m1,
+                // then break the engagement between w and m1 and
+                // engage m with w.
+                if (wPrefersM1OverM(prefer, w, m, m1) == false)
+                {
+                    wPartner[w-N] = m;
+                    mFree[m] = true;
+                    mFree[m1] = false;
+                }
+            } // End of Else
+        } // End of the for loop that goes to all women in m's list
+    } // End of main while loop
+    
+    
+    // Print the solution
+    cout << "Woman   Man" << endl;
+    for (int i = 0; i < N; i++)
+        cout << " " << i+N << "\t" << wPartner[i] << endl;
+}
+
+// Driver program to test above functions
+int main()
+{
+    int prefer[2*N][N] = { {7, 5, 6, 4},
+        {5, 4, 6, 7},
+        {4, 5, 6, 7},
+        {4, 5, 6, 7},
+        {0, 1, 2, 3},
+        {0, 1, 2, 3},
+        {0, 1, 2, 3},
+        {0, 1, 2, 3},
+    };
+    stableMarriage(prefer);
+    
+    return 0;
+}

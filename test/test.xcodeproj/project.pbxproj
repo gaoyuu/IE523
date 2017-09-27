@@ -23,7 +23,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		732C8DF71F61076200A2964C /* sudoku.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = sudoku.h; sourceTree = "<group>"; };
 		73ECD5AA1F575B21002B8138 /* test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = test; sourceTree = BUILT_PRODUCTS_DIR; };
 		73ECD5AD1F575B21002B8138 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -59,7 +58,6 @@
 			isa = PBXGroup;
 			children = (
 				73ECD5AD1F575B21002B8138 /* main.cpp */,
-				732C8DF71F61076200A2964C /* sudoku.h */,
 			);
 			path = test;
 			sourceTree = "<group>";
