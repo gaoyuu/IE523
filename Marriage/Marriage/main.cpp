@@ -134,7 +134,7 @@ class stable_marriage_instance
                     // If woman prefers man_index over her current engagement substitute,
                     // then break the engagement between w and substitute and
                     // engage man_index with woman.
-                    cout << "substitute_man     " << substitute_man << endl;
+                    //cout << "substitute_man     " << substitute_man << endl;
                     
                     if (rank_check(Preference_of_women[woman_index], man_index, substitute_man) == true)
                     {
