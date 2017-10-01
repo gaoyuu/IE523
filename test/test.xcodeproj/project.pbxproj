@@ -23,6 +23,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		735F6F671F8091CB000EB904 /* gaoyu_hw5.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = gaoyu_hw5.h; sourceTree = "<group>"; };
 		73ECD5AA1F575B21002B8138 /* test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = test; sourceTree = BUILT_PRODUCTS_DIR; };
 		73ECD5AD1F575B21002B8138 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -58,6 +59,7 @@
 			isa = PBXGroup;
 			children = (
 				73ECD5AD1F575B21002B8138 /* main.cpp */,
+				735F6F671F8091CB000EB904 /* gaoyu_hw5.h */,
 			);
 			path = test;
 			sourceTree = "<group>";
