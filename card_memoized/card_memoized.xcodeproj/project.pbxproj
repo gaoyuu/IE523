@@ -3,15 +3,15 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 48;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		73ECC1F61F6F614800565134 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73ECC1F51F6F614800565134 /* main.cpp */; };
+		735F6F661F7D8ABE000EB904 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 735F6F641F7D8ABE000EB904 /* main.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		73ECC1F01F6F614800565134 /* CopyFiles */ = {
+		735F6F581F7D8AA9000EB904 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = /usr/share/man/man1/;
@@ -23,13 +23,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		73ECC1F21F6F614800565134 /* cardgame */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = cardgame; sourceTree = BUILT_PRODUCTS_DIR; };
-		73ECC1F51F6F614800565134 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		73ECC1FC1F6F617500565134 /* card_game.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = card_game.h; sourceTree = "<group>"; };
+		735F6F5A1F7D8AA9000EB904 /* card_memoized */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = card_memoized; sourceTree = BUILT_PRODUCTS_DIR; };
+		735F6F641F7D8ABE000EB904 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		735F6F651F7D8ABE000EB904 /* card_game.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = card_game.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		73ECC1EF1F6F614800565134 /* Frameworks */ = {
+		735F6F571F7D8AA9000EB904 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -39,106 +39,109 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		73ECC1E91F6F614800565134 = {
+		735F6F511F7D8AA9000EB904 = {
 			isa = PBXGroup;
 			children = (
-				73ECC1F41F6F614800565134 /* cardgame */,
-				73ECC1F31F6F614800565134 /* Products */,
+				735F6F5C1F7D8AA9000EB904 /* card_memoized */,
+				735F6F5B1F7D8AA9000EB904 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		73ECC1F31F6F614800565134 /* Products */ = {
+		735F6F5B1F7D8AA9000EB904 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				73ECC1F21F6F614800565134 /* cardgame */,
+				735F6F5A1F7D8AA9000EB904 /* card_memoized */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		73ECC1F41F6F614800565134 /* cardgame */ = {
+		735F6F5C1F7D8AA9000EB904 /* card_memoized */ = {
 			isa = PBXGroup;
 			children = (
-				73ECC1F51F6F614800565134 /* main.cpp */,
-				73ECC1FC1F6F617500565134 /* card_game.h */,
+				735F6F641F7D8ABE000EB904 /* main.cpp */,
+				735F6F651F7D8ABE000EB904 /* card_game.h */,
 			);
-			path = cardgame;
+			path = card_memoized;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		73ECC1F11F6F614800565134 /* cardgame */ = {
+		735F6F591F7D8AA9000EB904 /* card_memoized */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 73ECC1F91F6F614800565134 /* Build configuration list for PBXNativeTarget "cardgame" */;
+			buildConfigurationList = 735F6F611F7D8AA9000EB904 /* Build configuration list for PBXNativeTarget "card_memoized" */;
 			buildPhases = (
-				73ECC1EE1F6F614800565134 /* Sources */,
-				73ECC1EF1F6F614800565134 /* Frameworks */,
-				73ECC1F01F6F614800565134 /* CopyFiles */,
+				735F6F561F7D8AA9000EB904 /* Sources */,
+				735F6F571F7D8AA9000EB904 /* Frameworks */,
+				735F6F581F7D8AA9000EB904 /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = cardgame;
-			productName = cardgame;
-			productReference = 73ECC1F21F6F614800565134 /* cardgame */;
+			name = card_memoized;
+			productName = card_memoized;
+			productReference = 735F6F5A1F7D8AA9000EB904 /* card_memoized */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		73ECC1EA1F6F614800565134 /* Project object */ = {
+		735F6F521F7D8AA9000EB904 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0830;
+				LastSwiftUpdateCheck = 0900;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "Yu Gao";
 				TargetAttributes = {
-					73ECC1F11F6F614800565134 = {
-						CreatedOnToolsVersion = 8.3.3;
+					735F6F591F7D8AA9000EB904 = {
+						CreatedOnToolsVersion = 9.0;
 						ProvisioningStyle = Automatic;
 					};
 				};
 			};
-			buildConfigurationList = 73ECC1ED1F6F614800565134 /* Build configuration list for PBXProject "cardgame" */;
-			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			buildConfigurationList = 735F6F551F7D8AA9000EB904 /* Build configuration list for PBXProject "card_memoized" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = 73ECC1E91F6F614800565134;
-			productRefGroup = 73ECC1F31F6F614800565134 /* Products */;
+			mainGroup = 735F6F511F7D8AA9000EB904;
+			productRefGroup = 735F6F5B1F7D8AA9000EB904 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				73ECC1F11F6F614800565134 /* cardgame */,
+				735F6F591F7D8AA9000EB904 /* card_memoized */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		73ECC1EE1F6F614800565134 /* Sources */ = {
+		735F6F561F7D8AA9000EB904 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				73ECC1F61F6F614800565134 /* main.cpp in Sources */,
+				735F6F661F7D8ABE000EB904 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		73ECC1F71F6F614800565134 /* Debug */ = {
+		735F6F5F1F7D8AA9000EB904 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -146,8 +149,13 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "-";
@@ -155,7 +163,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -173,20 +181,24 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
-		73ECC1F81F6F614800565134 /* Release */ = {
+		735F6F601F7D8AA9000EB904 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -194,8 +206,13 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "-";
@@ -203,7 +220,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -214,45 +231,50 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 			};
 			name = Release;
 		};
-		73ECC1FA1F6F614800565134 /* Debug */ = {
+		735F6F621F7D8AA9000EB904 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
-		73ECC1FB1F6F614800565134 /* Release */ = {
+		735F6F631F7D8AA9000EB904 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		73ECC1ED1F6F614800565134 /* Build configuration list for PBXProject "cardgame" */ = {
+		735F6F551F7D8AA9000EB904 /* Build configuration list for PBXProject "card_memoized" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				73ECC1F71F6F614800565134 /* Debug */,
-				73ECC1F81F6F614800565134 /* Release */,
+				735F6F5F1F7D8AA9000EB904 /* Debug */,
+				735F6F601F7D8AA9000EB904 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		73ECC1F91F6F614800565134 /* Build configuration list for PBXNativeTarget "cardgame" */ = {
+		735F6F611F7D8AA9000EB904 /* Build configuration list for PBXNativeTarget "card_memoized" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				73ECC1FA1F6F614800565134 /* Debug */,
-				73ECC1FB1F6F614800565134 /* Release */,
+				735F6F621F7D8AA9000EB904 /* Debug */,
+				735F6F631F7D8AA9000EB904 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 73ECC1EA1F6F614800565134 /* Project object */;
+	rootObject = 735F6F521F7D8AA9000EB904 /* Project object */;
 }
