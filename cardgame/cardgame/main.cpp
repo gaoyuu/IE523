@@ -19,7 +19,8 @@ int main (int argc, char * const argv[])
     
     sscanf (argv[1], "%d", &total_number_of_cards);
     
-    
+    //use a double pointer to store the result, every time calculate the value
+    // avoid repeated calculations and use it directly
     mem = new double *[total_number_of_cards / 2 + 1];
     
     for (int i = 0; i <= total_number_of_cards / 2; i++)
