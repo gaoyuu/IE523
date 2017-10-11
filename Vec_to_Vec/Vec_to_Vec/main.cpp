@@ -44,12 +44,15 @@ int main (int argc, char * const argv[]) {
         }
     }
     
+    int a = 1;
     // print array
     for (int i = 0; i < m; i++)
     {
         cout << endl;
         for (int j = 0; j < n; j++)
-            cout << test[j][i] << " ";
+        {   cout << test[j][i] <<"("<<a<<") ";
+            a++;
+        }
     }
     cout << endl;
     

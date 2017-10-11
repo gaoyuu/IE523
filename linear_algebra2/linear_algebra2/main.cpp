@@ -85,6 +85,7 @@ int main (int argc, char* argv[])
     B3 = (A.column(1) | A.column(3) | A.column(4));
     B4 = (A.column(2) | A.column(3) | A.column(4));
     
+    cout << endl << A(1,1) << endl <<endl;
     cout << "Ranks of:" << endl;
     cout << "(c1 c2 c3) = " << Rank(B1) << "; (c1 c2 c4) = " << Rank(B2);
     cout << "; (c1 c3 c4) = " << Rank(B3) << "; (c2 c3 c4) = " << Rank(B4) << endl;

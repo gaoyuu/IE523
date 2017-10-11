@@ -33,17 +33,44 @@ vector < vector < double > > solution_set;
 
 int Rank(Matrix A)
 {
-    return 0;
-    // Use the code I wrote for Linear Algebra 2.cpp to compute Rank of A
+    // The SVD routine in NEWMAT assume #rows >= #cols in A
+    // if #rows < #cols, then we compute the SVD of the transpose of A
+    if (A.nrows() >= A.ncols())
+    {
+        DiagonalMatrix D(A.ncols());
+        SVD(A,D);
+        int rank = 0;
+        for (int i = 1; i <= A.ncols(); i++)
+            if (abs(D(i)) > EPSILON)
+                rank++;
+        return (rank);
+    }
+    else {
+        DiagonalMatrix D(A.nrows());
+        SVD(A.t(),D);
+        int rank = 0;
+        for (int i = 1; i <= A.nrows(); i++)
+            if (abs(D(i)) > EPSILON)
+                rank++;
+        return (rank);
+    }
 }
 
 // This routine finds the basic solution where we have rank(A)
 // many columns and y is in the linear span of the cols of A
 ColumnVector Find_Basic_Solution(Matrix A, ColumnVector y)
 {
-    // Write code that implements equation 1 of lesson 2 of my
-    // notes.  A should be of full rank and y is a column vector
-    
+    // A should be of full rank and y is a column vector
+    if (Rank(A) == min(A.ncols(), A.nrows()))
+    {
+        return ((A.t()*A).i())*A.t()*y;
+    }
+    else {
+        cout << "Matrix: " << endl;
+        cout << setw(9) << setprecision(3) << A;
+        cout << "is not of full-rank... exiting..." << endl;
+        exit (0);
+    }
 }
 
 void create_solution_vector(Matrix A, ColumnVector y)
@@ -75,13 +102,16 @@ void create_solution_vector(Matrix A, ColumnVector y)
             vector <vector <double> > B;
             // pick rank(A)-many columns of A and store in B which is a
             // vector-of-vectors
-            // Look at your solution to the 1st programming assignment
-            // for help, if you need it.
             
-            // Look at your solution the 1st programming assignment
-            for (int i = 0; i < A.ncols(); ++i)
+            // Look at solution the 1st programming assignment
+            for (int i = 0; i < A.ncols(); i++)
             {
-                // fill this code appropriately
+                if (did_i_pick_this_col[i] == true) {
+                    vector <double> temp;
+                    for (int j = 0; j < A.nrows(); j++)
+                        temp.push_back(A(j+1,i+1));
+                    B.push_back(temp);
+                }
             }
             // At the end of this part -- we have rank(A)-many columns of A
             // that are stored in B
@@ -91,6 +121,7 @@ void create_solution_vector(Matrix A, ColumnVector y)
             for (int j = 1; j <= A.nrows(); j++)
                 for (int k = 1; k <= rank_of_A; k++)
                     Column_reduced_version_of_A(j,k) = B[k-1][j-1];
+            
             if (Rank(Column_reduced_version_of_A) == rank_of_A)
             {
                 // we found a submatrix of A with the same rank...
@@ -109,7 +140,16 @@ void create_solution_vector(Matrix A, ColumnVector y)
                 // zeros inserted into it.  Store temp for later use in the
                 // matrix "solution_set" (which is a global array stored as a
                 // vector-of-vectors...
-                
+                int target = 1;
+                for (int i = 0; i < A.ncols(); i++)
+                {
+                    if (did_i_pick_this_col[i]==true){
+                        temp.push_back(soln(target));
+                        target++;
+                    }
+                    else
+                        temp.push_back(0);
+                }
                 solution_set.push_back(temp);
             }
         } while (prev_permutation(did_i_pick_this_col.begin(), did_i_pick_this_col.end()));
@@ -137,7 +177,7 @@ void trim_the_solution_set(Matrix A, ColumnVector y)
         // Create a boolean array where the first rank(solution)-many items
         // are "true" (i.e. 1) the remaining n-rank(solution) items are
         // "false" (i.e. 0)
-        vector <bool> did_i_pick_this(solution.nrows());
+        vector <bool> did_i_pick_this(solution.ncols());
         fill(did_i_pick_this.begin(),
              did_i_pick_this.begin() + rank_of_solution_set, true);
         
@@ -154,6 +194,18 @@ void trim_the_solution_set(Matrix A, ColumnVector y)
             // check rank condition of selected colums of A
             // I need the matrix "Column_reduced_version" in place of B
             // because "Rank" only works with Matrices (not vector-of-vectors) :-)
+            
+            // Look at your solution the 1st programming assignment
+            for (int i = 0; i < solution.ncols(); i++)
+            {
+                if (did_i_pick_this[i] == true) {
+                    vector <double> temp;
+                    for (int j = 0; j < solution.nrows(); j++)
+                        temp.push_back(solution(j+1,i+1));
+                    B.push_back(temp);
+                }
+            }
+            
             Matrix Column_reduced_version(solution.nrows(), rank_of_solution_set);
             for (int j = 1; j <= solution.nrows(); j++)
                 for (int k = 1; k <= rank_of_solution_set; k++)
