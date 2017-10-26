@@ -37,13 +37,24 @@ class Filtering_Instance
     // Private member function that computes the mean of a data array
     double compute_mean(ColumnVector data)
     {
+        double sum = 0;
+        double datamean;
         // write the code to compute the mean of "data"
+        // colomnvector data starts from pix 1
+        for (int i = 1; i <= data.nrows(); i++) {
+            sum += data(i);
+        }
+        datamean = sum/data.nrows();
+        return datamean;
     }
     
     // Private member function that computes the magnitude of (an array of) complex #s
     void compute_magnitude(ColumnVector &magnitude, ColumnVector real_part, ColumnVector imag_part)
     {
         // write the code to compute sqrt(real_part(i)^2 + imag_part(i)^i)
+        for (int i = 1; i <= real_part.nrows() ; i++) {
+            magnitude(i) = sqrt((pow(real_part(i), 2.0))+(pow(imag_part(i), 2.0)));
+        }
     }
     
     // Private member function that reads the data from the input file
@@ -52,12 +63,22 @@ class Filtering_Instance
     {
         // write code that reads the ticker-data from the input file
         // and stores it in "data"
+        ifstream input_file(file_name);
+        double element;
+        for (int i = 1; i <= data.nrows(); i++) {
+            input_file >> element;
+            data(i) = element;
+        }
     }
     
     // private member function that writes the data file into a file
     void write_data(char* file_name, ColumnVector &data)
     {
         // write code that writes "data" to file_name.
+        ofstream output_file(file_name);
+        for (int i = 1; i <= data.nrows(); i++) {
+            output_file << data(i) << endl;
+        }
     }
     
     // private member function that filters data using the FFT
@@ -102,6 +123,12 @@ class Filtering_Instance
         // "filtered_fft_imag_part" -- and reconstruct the filtered signal as
         // shown below.
         
+        for (int i = 1; i <= fft_imag_part.nrows(); i++) {
+            do_we_pick_this(i) = 0;
+        }
+        for (int i = 0; i <= no_of_terms; i++) {
+            do_we_pick_this(two_dimensional_array[i][0]) = 1；
+        }
         // reconstructed signal using just the "no_of_terms"-many top-magnitude
         // components.
         RealFFTI(filtered_fft_real_part, filtered_fft_imag_part, filtered_data);
