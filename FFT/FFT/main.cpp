@@ -45,6 +45,7 @@ class Filtering_Instance
             sum += data(i);
         }
         datamean = sum/data.nrows();
+        //cout << datamean << endl;
         return datamean;
     }
     
@@ -127,13 +128,25 @@ class Filtering_Instance
             do_we_pick_this(i) = 0;
         }
         for (int i = 0; i <= no_of_terms; i++) {
-            do_we_pick_this(two_dimensional_array[i][0]) = 1；
+            do_we_pick_this(two_dimensional_array[i][0]) = 1;
+        }
+        for (int i = 1; i <= fft_imag_part.nrows(); i++) {
+            if (do_we_pick_this(i)) {
+                filtered_fft_real_part(i) = fft_real_part(i);
+                filtered_fft_imag_part(i) = fft_imag_part(i);
+            } else {
+                filtered_fft_real_part(i) = 0;
+                filtered_fft_imag_part(i) = 0;
+            }
         }
         // reconstructed signal using just the "no_of_terms"-many top-magnitude
         // components.
         RealFFTI(filtered_fft_real_part, filtered_fft_imag_part, filtered_data);
         
-        // write code to add the mean-back to the reconstructed, filtered-signal
+        //write code to add the mean-back to the reconstructed, filtered-signal
+        for (int i = 1; i <= filtered_data.nrows(); i++) {
+            filtered_data(i) += mean;
+        }
     }
     
 public:
