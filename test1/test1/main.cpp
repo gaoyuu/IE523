@@ -1,24 +1,36 @@
+#include <stdio.h>
+#include <math.h>
+#include <chplot.h>
 
-#include <iostream>
-#include <cmath>
-using namespace std;
+/* The initial position of the vibration is 4.
+ The initial velocity of the vibration is 0 */
+double overdamped(double t) {
+    return 4.12*exp(-1.57*t) - 0.12*exp(-54.2*t);
+}
 
+double criticaldamped(double t) {
+    return 4*(1+6*t)*exp(-6*t);
+}
 
-int take(int n, int i)
-{
-    // write a **RECURSIVE** implementation of n-take-i.
-    // If you made it non-recurisive (i.e. n!/((n-i)!i!)) -- it
-    // will take too long for large sizes
-    if (i == 0) {
-        return 1;
-    } else {
-        return (n * take(n - 1, i - 1)) / i;
-    }
+double underdamped(double t) {
+    return 4.06*exp(-0.5*t)*sin(3*t+1.4);
+}
+
+int main() {
+    double t0, tf;
+    int num = 100;       // number of points for plotting
+    CPlot plot;
     
-}
-
-int main(int argc,char*argv[])
-{
-    cout << take(7,3) << endl;
-}
-
+    t0 = 0;
+    tf = 10;
+    plot.title("Damped Free Vibration");
+    plot.label(PLOT_AXIS_X, "time (second)");
+    plot.label(PLOT_AXIS_Y, "x");
+    plot.func2D(t0, tf, num, overdamped);
+    plot.legend("overdamped", 0);
+    plot.func2D(t0, tf, num, criticaldamped);
+    plot.legend("critically damped", 1);
+    plot.func2D(t0, tf, num, underdamped);
+    plot.legend("underdamped", 2);
+    plot.plotting();
+    re

@@ -8,6 +8,7 @@
 #include <fstream>
 #include <cstdlib>
 #include "gaoyu_hw7.h"
+
 using namespace std;
 
 int main (int argc, char* argv[])
@@ -23,11 +24,15 @@ int main (int argc, char* argv[])
     x.set_probability(alice_success_prob, bob_success_prob);
     
     int optimal = x.search_result();
+    
     if (optimal > 0)
         cout << "The optimal number of coin tosses in each game is " << optimal << endl;
     else {
         cout << "The optimal number of coin tosses in each game exceeds 100... Quitting" << endl;
     }
+    
+    //cout << x.simulated_value(70,10000) << endl;
+    //x.create_data_file();
 }
 
 

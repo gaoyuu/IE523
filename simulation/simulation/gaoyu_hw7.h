@@ -10,6 +10,8 @@
 #define ALICE_AND_BOB
 
 #include <cmath>
+#include <vector>
+#include <fstream>
 
 using namespace std;
 
@@ -45,17 +47,18 @@ private:
         // implement equation 1.1 of Addona-Wagon-Wilf paper
         double probability_of_winning = 0;
         
-        for (int r = 0; r <= n; r++) {
+        for (int r = 0; r < n; r++) {
             for (int s = r + 1; s <= n; s++) {
-                probability_of_winning += take(n,s) * (pow(q,s)) * (pow((1 - q), (n - s)))*take(n, r) * (pow(p,r)) * (pow((1 - p), (n - r)));
+                probability_of_winning += take(n,s) * (pow(q,s)) * (pow((1 - q), (n - s))) * take(n, r) * (pow(p,r)) * (pow((1 - p), (n - r)));
             }
         }
-//        cout <<  "probability_of_heads_for_alice = " << n << " " << probability_of_heads_for_alice << endl;
-//        cout << "probability_of_winning = " << probability_of_winning << endl;
         return probability_of_winning;
     }
     
 public:
+    vector <double> simulated_data;
+    vector <double> theoretical_data;
+    
     // public function:
     void set_probability(double alice_p, double bob_p)
     {
@@ -84,6 +87,24 @@ public:
         return (((double) no_of_wins_for_alice)/((double) no_of_trials));
     }
     
+    
+    void create_data_file() {
+        
+        for (int i = 0; i <= 100; i++) {
+            theoretical_data.push_back(theoretical_value(alice_probability, bob_probability, i));
+            simulated_data.push_back(simulated_value(i, 100000));
+        }
+        
+        ofstream simulated_file;
+        ofstream theoretical_file;
+        simulated_file.open("simulated_data");
+        theoretical_file.open("theoretical_data");
+        for (int i = 0; i <= simulated_data.size(); i++) {
+            simulated_file << simulated_data[i] << endl;
+            theoretical_file << theoretical_data[i] << endl;
+        }
+    }
+    
     int search_result()
     {
         // implememt a discrete-search procedure for the optimal n-value.
@@ -99,7 +120,6 @@ public:
                 break;
             }
         }
-
         return result;
     }
     
