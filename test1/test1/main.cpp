@@ -4,37 +4,21 @@
 using namespace std;
 
 
-//intf(intn,intm)
-//{
-//if(n<10)
-//return(m+1);
-//else{
-//m++;
-//return(f(n/10,m));
-//}
-//}
-//
+int take(int n, int i)
+{
+    // write a **RECURSIVE** implementation of n-take-i.
+    // If you made it non-recurisive (i.e. n!/((n-i)!i!)) -- it
+    // will take too long for large sizes
+    if (i == 0) {
+        return 1;
+    } else {
+        return (n * take(n - 1, i - 1)) / i;
+    }
+    
+}
+
 int main(int argc,char*argv[])
 {
-    
-    double **array=new double *[2];
-    for(int i=0;i<2;i++)
-        array[i]=new double[2];
-    array[0][0]=2;array[0][1]=4;array[1][0]=6;array[1][1]=8;
-    //cout<<array[0]<<endl;
-    cout<<*(++array[0])<<endl;
-    cout<<++(*array[0])<<endl;
-    //cout<<array[0]<<endl;
-    return(0);
+    cout << take(7,3) << endl;
 }
-//intx,y,*p,*q;
-//p=&x;q=&y;x=35;y=46;*p=78;
-//cout<<x<<""<<y<<endl;
-//cout<<*p<<""<<*q<<endl;
-//return(0);
-//}
-
-//intm=0;
-//cout<<f(1234,m)<<endl;
-//}
 

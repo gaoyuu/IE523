@@ -127,11 +127,11 @@ class Filtering_Instance
         for (int i = 1; i <= fft_imag_part.nrows(); i++) {
             do_we_pick_this(i) = 0;
         }
-        for (int i = 0; i <= no_of_terms; i++) {
-            do_we_pick_this(two_dimensional_array[i][0]) = 1;
+        for (int i = 1; i <= no_of_terms; i++) {
+            do_we_pick_this(two_dimensional_array[i - 1][0] + 1) = 1;
         }
         for (int i = 1; i <= fft_imag_part.nrows(); i++) {
-            if (do_we_pick_this(i)) {
+            if (do_we_pick_this(i) == 1) {
                 filtered_fft_real_part(i) = fft_real_part(i);
                 filtered_fft_imag_part(i) = fft_imag_part(i);
             } else {
