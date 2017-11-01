@@ -30,8 +30,6 @@ int main (int argc, char* argv[])
     else {
         cout << "The optimal number of coin tosses in each game exceeds 100... Quitting" << endl;
     }
-    
-    //cout << x.simulated_value(70,10000) << endl;
     //x.create_data_file();
 }
 

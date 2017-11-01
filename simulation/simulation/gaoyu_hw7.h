@@ -28,7 +28,7 @@ private:
     }
     
     // private member function: nCi (i.e. n-take-i)
-    int take(int n, int i)
+    long int take(int n, int i)
     {
         // write a **RECURSIVE** implementation of n-take-i.
         // If you made it non-recurisive (i.e. n!/((n-i)!i!)) -- it
@@ -90,7 +90,7 @@ public:
     
     void create_data_file() {
         
-        for (int i = 0; i <= 100; i++) {
+        for (int i = 0; i < 50; i++) {
             theoretical_data.push_back(theoretical_value(alice_probability, bob_probability, i));
             simulated_data.push_back(simulated_value(i, 100000)); //here modify the no_of_trials
         }
