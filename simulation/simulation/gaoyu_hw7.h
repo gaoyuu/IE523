@@ -92,7 +92,7 @@ public:
         
         for (int i = 0; i <= 100; i++) {
             theoretical_data.push_back(theoretical_value(alice_probability, bob_probability, i));
-            simulated_data.push_back(simulated_value(i, 100000));
+            simulated_data.push_back(simulated_value(i, 100000)); //here modify the no_of_trials
         }
         
         ofstream simulated_file;
