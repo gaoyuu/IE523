@@ -20,6 +20,7 @@ class I_have_nothing_apropos_for_this_class
 private:
     double alice_probability, bob_probability;
     
+    // pseudo random number
     // private member function: uniform RV generator
     double get_uniform()
     {
@@ -28,7 +29,7 @@ private:
     }
     
     // private member function: nCi (i.e. n-take-i)
-    long int take(int n, int i)
+    long long int take(int n, int i)
     {
         // write a **RECURSIVE** implementation of n-take-i.
         // If you made it non-recurisive (i.e. n!/((n-i)!i!)) -- it
@@ -90,7 +91,7 @@ public:
     
     void create_data_file() {
         
-        for (int i = 0; i < 50; i++) {
+        for (int i = 0; i < 60; i++) {
             theoretical_data.push_back(theoretical_value(alice_probability, bob_probability, i));
             simulated_data.push_back(simulated_value(i, 100000)); //here modify the no_of_trials
         }
@@ -99,7 +100,7 @@ public:
         ofstream theoretical_file;
         simulated_file.open("simulated_data");
         theoretical_file.open("theoretical_data");
-        for (int i = 0; i <= simulated_data.size(); i++) {
+        for (int i = 0; i < simulated_data.size(); i++) {
             simulated_file << simulated_data[i] << endl;
             theoretical_file << theoretical_data[i] << endl;
         }

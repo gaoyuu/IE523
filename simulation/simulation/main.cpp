@@ -30,7 +30,9 @@ int main (int argc, char* argv[])
     else {
         cout << "The optimal number of coin tosses in each game exceeds 100... Quitting" << endl;
     }
-    //x.create_data_file();
+    
+    //create the data file
+    x.create_data_file();
 }
 
 
