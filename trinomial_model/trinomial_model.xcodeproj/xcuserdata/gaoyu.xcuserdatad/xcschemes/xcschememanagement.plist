@@ -4,7 +4,7 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>american_option_pricing_by_binomial_model.xcscheme</key>
+		<key>trinomial_model.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
@@ -12,7 +12,7 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>735CD7F41FAA602F00D09F0D</key>
+		<key>73BC2C401FB7E8150067F06E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
