@@ -11,7 +11,8 @@
 #include "newmat.h"
 using namespace std;
 
-double up_factor, uptick_prob, risk_free_rate, strike_price;
+double up_factor, uptick_prob, downtick_prob, notick_prob;
+double risk_free_rate, strike_price;
 double initial_stock_price, expiration_time, volatility, R;
 int no_of_divisions;
 
@@ -29,17 +30,19 @@ double american_call_option_dyn_prog()
             transition_probability(i,j) = 0.0;
     
     // boundary values of the probabilities need to be entered
-    transition_probability(1,1) = 1.0 - uptick_prob;
+    transition_probability(1,1) = 1.0 - downtick_prob;
     transition_probability(1,2) = uptick_prob;
-    transition_probability(2*no_of_divisions+1,2*no_of_divisions+1) = uptick_prob;
-    transition_probability(2*no_of_divisions+1,2*no_of_divisions) = 1 - uptick_prob;
+    transition_probability(2*no_of_divisions+1,2*no_of_divisions+1) = 1 - downtick_prob;
+    transition_probability(2*no_of_divisions+1,2*no_of_divisions) = downtick_prob;
     
     for (int i = 2; i <= 2*no_of_divisions; i++)
         for (int j = 1; j <= 2*no_of_divisions+1; j++) {
             if (j == (i-1))
-                transition_probability(i,j) = 1 - uptick_prob;
+                transition_probability(i,j) = downtick_prob;
             if (j == (i+1))
                 transition_probability(i,j) = uptick_prob;
+            if (j == i)
+                transition_probability(i,j) = 1 - uptick_prob - downtick_prob;
         }
     
     Matrix V_t(2*no_of_divisions+1,1);
@@ -74,17 +77,19 @@ double american_put_option_dyn_prog()
             transition_probability(i,j) = 0.0;
     
     // boundary values of the probabilities need to be entered
-    transition_probability(1,1) = 1.0 - uptick_prob;
+    transition_probability(1,1) = 1.0 - downtick_prob;
     transition_probability(1,2) = uptick_prob;
-    transition_probability(2*no_of_divisions+1,2*no_of_divisions+1) = uptick_prob;
-    transition_probability(2*no_of_divisions+1,2*no_of_divisions) = 1 - uptick_prob;
+    transition_probability(2*no_of_divisions+1,2*no_of_divisions+1) = 1 - downtick_prob;
+    transition_probability(2*no_of_divisions+1,2*no_of_divisions) = downtick_prob;
     
     for (int i = 2; i <= 2*no_of_divisions; i++)
         for (int j = 1; j <= 2*no_of_divisions+1; j++) {
             if (j == (i-1))
-                transition_probability(i,j) = 1 - uptick_prob;
+                transition_probability(i,j) = downtick_prob;
             if (j == (i+1))
                 transition_probability(i,j) = uptick_prob;
+            if (j == i)
+                transition_probability(i,j) = 1 - uptick_prob - downtick_prob;
         }
     
     Matrix V_t(2*no_of_divisions+1,1);
@@ -118,9 +123,11 @@ int main (int argc, char* argv[])
     sscanf (argv[5], "%lf", &initial_stock_price);
     sscanf (argv[6], "%lf", &strike_price);
     
-    up_factor = exp(volatility*sqrt(expiration_time/((float) no_of_divisions)));
-    R = exp(risk_free_rate*expiration_time/((float) no_of_divisions));
-    uptick_prob = (R - (1/up_factor))/(up_factor-(1/up_factor));
+    up_factor = exp(volatility*sqrt(2.0 * (expiration_time/((double) no_of_divisions))));
+    R = exp(risk_free_rate*expiration_time/((double) no_of_divisions));
+    uptick_prob = pow(((sqrt(R) - (1/sqrt(up_factor)))/(sqrt(up_factor)-(1/sqrt(up_factor)))),2.0);
+    downtick_prob = pow(((sqrt(up_factor) - sqrt(R))/(sqrt(up_factor)-(1/sqrt(up_factor)))),2.0);
+    notick_prob = 1 - uptick_prob - downtick_prob;
     
     cout << "American Option Pricing by Trinomial-Model-Inspired Dynamic Programming" << endl;
     cout << "Expiration Time (Years) = " << expiration_time << endl;
@@ -133,6 +140,8 @@ int main (int argc, char* argv[])
     cout << "R = " << R << endl;
     cout << "Up Factor = " << up_factor << endl;
     cout << "Uptick Probability = " << uptick_prob << endl;
+    cout << "Downtick Probability = " << downtick_prob << endl;
+    cout << "Notick Probability = " << notick_prob << endl;
     cout << "--------------------------------------" << endl;
     cout << "Price of an American Call Option = " << american_call_option_dyn_prog() << endl;
     cout << "Price of an American Put Option = " << american_put_option_dyn_prog() << endl;

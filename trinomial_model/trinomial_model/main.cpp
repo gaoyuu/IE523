@@ -57,6 +57,7 @@ int main (int argc, char* argv[])
     uptick_prob = pow(((sqrt(R) - (1/sqrt(up_factor)))/(sqrt(up_factor)-(1/sqrt(up_factor)))),2.0);
     downtick_prob = pow(((sqrt(up_factor) - sqrt(R))/(sqrt(up_factor)-(1/sqrt(up_factor)))),2.0);
     notick_prob = 1 - uptick_prob - downtick_prob;
+    
     cout << "Recursive Trinomial American Option Pricing" << endl;
     cout << "Expiration Time (Years) = " << expiration_time << endl;
     cout << "Number of Divisions = " << no_of_divisions << endl;
