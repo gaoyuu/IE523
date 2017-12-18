@@ -27,6 +27,14 @@ public:
         return (((double) random())/(pow(2.0, 31.0)-1.0));
     }
     
+    void checkmatrix(Matrix checkmat) {
+        for (int i = 1; i <= checkmat.nrows(); i++) {
+            for (int j = 1; j <= checkmat.ncols(); j++) {
+                cout << checkmat(i,j) << endl;
+            }
+        }
+    }
+    
     Matrix create_random_matrix(int dimension){
         Matrix A(dimension, dimension);
         for (int i = 1; i <= dimension; i++) {
@@ -34,27 +42,26 @@ public:
                 A(i,j) = 10.0 * get_uniform() - 5;
             }
         }
+        checkmatrix(A);
         return A;
     }
     
     Matrix repeated_squaring(Matrix A, int exponent, int dimension) {
-        A(dimension,dimension);
+       
         IdentityMatrix I(dimension);
-        if (exponent == 0) {//exponent = 0
+        if (exponent == 0)//exponent = 0
             return I;
-        }
-        else {
-            if (exponent%2 == 1) // if exponent is odd
-                return (A * repeated_squaring (A*A, (exponent-1)/2, dimension));
-            else //if exponent is even
-                return (A * repeated_squaring( A*A, exponent/2, dimension));
-        }
+        if (exponent % 2 == 1) // if exponent is odd
+            return (A * repeated_squaring (A*A, (exponent - 1) / 2, dimension));
+        else //if exponent is even
+            return (repeated_squaring( A*A, exponent/2, dimension));
+        
     }
     
     Matrix direct_multiplication(Matrix A, int exponent,int dimension) {
         Matrix result(dimension,dimension);
         result = A;
-        for (int i = 0; i < exponent; i++) {
+        for (int i = 1; i < exponent; i++) {
             result = result * A;
         }
         return result;
@@ -63,6 +70,7 @@ public:
     float repeated_squaring_time(Matrix A, int exponent, int dimension) {
         clock_t time_before = clock();
         Matrix B = repeated_squaring(A, exponent, dimension);
+        checkmatrix(B);
         clock_t time_after = clock();
         float diff = ((float)time_after - (float)time_before);
         return diff/CLOCKS_PER_SEC;
@@ -71,20 +79,21 @@ public:
     float direct_multiplication_time(Matrix A, int exponent, int dimension) {
         clock_t time_before = clock();
         Matrix B = direct_multiplication(A, exponent, dimension);
+        checkmatrix(B);
         clock_t time_after = clock();
         float diff = ((float)time_after - (float)time_before);
         return diff/CLOCKS_PER_SEC;
     }
     
     void create_data_file(Matrix A, int dimension) {
-
+        
         vector <float> repeated_time;
         vector <float> direct_time;
         for (int i = 0; i <= 300; i++) {
             repeated_time.push_back(repeated_squaring_time(A, i, dimension));
             direct_time.push_back(direct_multiplication_time(A, i, dimension));
         }
-
+        
         ofstream simulated_file;
         ofstream theoretical_file;
         simulated_file.open("repeated_time");
@@ -115,7 +124,8 @@ int main(int argc, const char * argv[]) {
     float diff_new = x.direct_multiplication_time(A, exponent, dimension);
     cout << "It took " << diff_new << " seconds to complete" << endl;
     
-    x.create_data_file(A, dimension);
+    
+    //x.create_data_file(A, dimension);
     
     return 0;
 }
